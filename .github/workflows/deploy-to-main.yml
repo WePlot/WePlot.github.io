@@ -31,11 +31,21 @@ jobs:
         
     - name: Deploy to GitHub Pages
       run: |
+        echo "=== Checking public directory ==="
+        ls -la public/
+        echo "=== Checking index.html content ==="
+        head -20 public/index.html
+        echo "=== Setting up git ==="
         cd public
         git init
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
+        echo "=== Adding files ==="
         git add .
+        echo "=== Files to commit ==="
+        git status
+        echo "=== Committing ==="
         git commit -m "Deploy: $(date)"
+        echo "=== Pushing to gh-pages ==="
         git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/WePlot/WePlot.github.io.git
         git push --force origin HEAD:gh-pages
