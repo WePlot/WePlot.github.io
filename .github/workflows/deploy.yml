@@ -21,7 +21,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: true
           fetch-depth: 0
           
       - name: Setup Node.js
@@ -32,6 +31,27 @@ jobs:
           
       - name: Install dependencies
         run: npm ci
+        
+      - name: Verify and setup theme
+        run: |
+          echo "Checking themes directory..."
+          ls -la themes/ || echo "Themes directory not found"
+          
+          echo "Checking for butterfly theme..."
+          if [ ! -d "themes/butterfly" ]; then
+            echo "Butterfly theme directory not found"
+            echo "Checking npm packages..."
+            npm list | grep butterfly || echo "No butterfly npm package found"
+            
+            # 如果主题目录不存在，尝试从 node_modules 复制或创建链接
+            if [ -d "node_modules/hexo-theme-butterfly" ]; then
+              echo "Found butterfly in node_modules, creating symlink..."
+              ln -sf ../node_modules/hexo-theme-butterfly themes/butterfly
+            fi
+          fi
+          
+          echo "Final themes directory check:"
+          ls -la themes/
         
       - name: Build site
         run: |
