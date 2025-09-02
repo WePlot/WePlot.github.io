@@ -1,4 +1,4 @@
-name: Deploy Hexo Blog
+name: Deploy Hexo Blog to GitHub Pages
 
 on:
   push:
@@ -20,7 +20,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+        with:
+          submodules: true
+          fetch-depth: 0
+          
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -30,10 +33,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
         
-      - name: Build
+      - name: Build site
         run: |
-          npm run clean
-          npm run build
+          npx hexo clean
+          npx hexo generate
           
       - name: Setup Pages
         uses: actions/configure-pages@v4

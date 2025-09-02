@@ -13,8 +13,8 @@ timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://weplot.github.io
-root: /
+url: https://weplot.github.io/hexo-blog
+root: /hexo-blog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -105,11 +105,11 @@ theme: butterfly
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: git
-  repo: https://github.com/WePlot/WePlot.github.io.git
-  branch: main
-  token: ${{ secrets.DEPLOY_TOKEN }}
+# 注意：当前使用 GitHub Actions 自动部署，无需手动部署配置
+# deploy:
+#   type: git
+#   repo: https://github.com/WePlot/hexo-blog.git
+#   branch: gh-pages
 
 # Search
 search:
