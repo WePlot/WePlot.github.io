@@ -121,12 +121,12 @@ local_search:
 
 # 评论系统 - Gitalk
 gitalk:
-  enable: true
-  github_id: # GitHub repo owner
-  repo: # Repository name to store issues
-  client_id: # GitHub Application Client ID
+  enable: false
+  github_id: WePlot # GitHub repo owner
+  repo: weplot.github.io # Repository name to store issues
+  client_id: Ov23li5vFhPzLbFuoRld # GitHub Application Client ID
   client_secret: # GitHub Application Client Secret
-  admin: # GitHub repo owner and collaborators
+  admin: WePlot # GitHub repo owner and collaborators
   distraction_free_mode: true # Facebook-like distraction free mode
 
 # 文章字数统计
