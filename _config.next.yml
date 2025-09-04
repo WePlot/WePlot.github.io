@@ -1,0 +1,148 @@
+# ===============================================================
+# NexT主题配置文件
+# ===============================================================
+
+# 主题风格选择: Muse | Mist | Pisces | Gemini
+scheme: Gemini
+
+# 暗黑模式支持
+darkmode: true
+
+# 网站图标设置
+favicon:
+  small: /images/favicon-16x16.png
+  medium: /images/favicon-32x32.png
+  apple_touch_icon: /images/apple-touch-icon.png
+  safari_pinned_tab: /images/logo.svg
+
+# 菜单设置
+menu:
+  home: / || fa fa-home
+  archives: /archives/ || fa fa-archive
+  categories: /categories/ || fa fa-th
+  tags: /tags/ || fa fa-tags
+  about: /about/ || fa fa-user
+  #schedule: /schedule/ || fa fa-calendar
+  #sitemap: /sitemap.xml || fa fa-sitemap
+  #commonweal: /404/ || fa fa-heartbeat
+
+# 侧边栏设置
+sidebar:
+  position: left
+  display: post
+  padding: 18
+  offset: 12
+
+# 头像设置
+avatar:
+  url: /images/avatar.gif
+  rounded: true
+  rotated: false
+
+# 社交链接
+social:
+  GitHub: https://github.com/weplot || fab fa-github
+  E-Mail: mailto:your-email@example.com || fa fa-envelope
+  #Weibo: https://weibo.com/yourname || fab fa-weibo
+  #Google: https://plus.google.com/yourname || fab fa-google
+  #Twitter: https://twitter.com/yourname || fab fa-twitter
+  #FB Page: https://www.facebook.com/yourname || fab fa-facebook
+  #StackOverflow: https://stackoverflow.com/yourname || fab fa-stack-overflow
+  #YouTube: https://youtube.com/yourname || fab fa-youtube
+  #Instagram: https://instagram.com/yourname || fab fa-instagram
+
+# 页脚设置
+footer:
+  since: 2025
+  icon:
+    name: fa fa-heart
+    animated: true
+    color: "#ff0000"
+  copyright: WePlot
+  powered: true
+  theme:
+    enable: true
+    version: true
+
+# 文章设置
+post_meta:
+  item_text: true
+  created_at: true
+  updated_at:
+    enable: true
+    another_day: true
+  categories: true
+
+# 代码高亮设置
+codeblock:
+  highlight_theme: night
+  copy_button:
+    enable: true
+    show_result: true
+
+# 返回顶部按钮
+back2top:
+  enable: true
+  sidebar: false
+  scrollpercent: true
+
+# 阅读进度条
+reading_progress:
+  enable: true
+  position: top
+  color: "#37c6c0"
+  height: 3px
+
+# 书签功能
+bookmark:
+  enable: true
+  color: "#222"
+  save: auto
+
+# GitHub横幅
+github_banner:
+  enable: true
+  permalink: https://github.com/weplot
+  title: Follow me on GitHub
+
+# 数学公式支持
+math:
+  enable: true
+  mathjax:
+    enable: true
+
+# 搜索功能
+local_search:
+  enable: true
+  trigger: auto
+  top_n_per_article: 1
+  unescape: false
+  preload: false
+
+# 评论系统 - Gitalk
+gitalk:
+  enable: true
+  github_id: # GitHub repo owner
+  repo: # Repository name to store issues
+  client_id: # GitHub Application Client ID
+  client_secret: # GitHub Application Client Secret
+  admin: # GitHub repo owner and collaborators
+  distraction_free_mode: true # Facebook-like distraction free mode
+
+# 文章字数统计
+symbols_count_time:
+  separated_meta: true
+  item_text_post: true
+  item_text_total: false
+  awl: 4
+  wpm: 275
+
+# 站点统计
+busuanzi_count:
+  enable: true
+  total_visitors: true
+  total_visitors_icon: fa fa-user
+  total_views: true
+  total_views_icon: fa fa-eye
+  post_views: true
+  post_views_icon: fa fa-eye
