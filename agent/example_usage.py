@@ -13,7 +13,7 @@ def main():
     """使用示例"""
     
     # 方法1: 通过环境变量设置API密钥
-    os.environ['DEEPSEEK_API_KEY'] = 'your_api_key_here'  # 替换为您的实际API密钥
+    os.environ['DEEPSEEK_API_KEY'] = 'sk-b1266f15cf244cb7b02fd0937de99d65'  # 替换为您的实际API密钥
     
     try:
         # 初始化生成器
@@ -70,10 +70,10 @@ def main():
 
 if __name__ == "__main__":
     # 检查是否设置了API密钥
-    if 'DEEPSEEK_API_KEY' not in os.environ or os.environ['DEEPSEEK_API_KEY'] == 'your_api_key_here':
-        print("警告: 请先设置有效的DeepSeek API密钥")
-        print("方法1: 设置环境变量 DEEPSEEK_API_KEY")
-        print("方法2: 修改示例代码中的API密钥")
-        sys.exit(1)
+    # if 'DEEPSEEK_API_KEY' not in os.environ or os.environ['DEEPSEEK_API_KEY'] == 'your_api_key_here':
+    #     print("警告: 请先设置有效的DeepSeek API密钥")
+    #     print("方法1: 设置环境变量 DEEPSEEK_API_KEY")
+    #     print("方法2: 修改示例代码中的API密钥")
+    #     sys.exit(1)
     
     sys.exit(main())

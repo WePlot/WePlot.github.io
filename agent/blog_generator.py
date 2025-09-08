@@ -12,10 +12,12 @@ import requests
 from typing import Optional, Dict, Any
 import argparse
 from datetime import datetime
+import time
+from openai import OpenAI
 
 class DeepSeekBlogGenerator:
     """DeepSeek API 博客生成器类"""
-    
+
     def __init__(self, api_key: Optional[str] = None):
         """
         初始化博客生成器
@@ -26,13 +28,8 @@ class DeepSeekBlogGenerator:
         self.api_key = api_key or os.getenv('DEEPSEEK_API_KEY')
         if not self.api_key:
             raise ValueError("未找到DeepSeek API密钥，请设置环境变量DEEPSEEK_API_KEY或通过参数传入")
-        
-        self.api_url = "https://api.deepseek.com/v1/chat/completions"
-        self.headers = {
-            "Authorization": f"Bearer {self.api_key}",
-            "Content-Type": "application/json"
-        }
-    
+        self.client = OpenAI(api_key=self.api_key, base_url="https://api.deepseek.com")
+
     def generate_blog_post(self, theme: str, content: str, style: str = "专业技术博客") -> str:
         """
         生成博客文章
@@ -46,37 +43,30 @@ class DeepSeekBlogGenerator:
             生成的博客文章内容
         """
         prompt = self._build_prompt(theme, content, style)
-        
-        payload = {
-            "model": "deepseek-chat",
-            "messages": [
-                {
-                    "role": "system",
-                    "content": "你是一位专业的博客作者，擅长撰写技术博客文章。请根据用户提供的主题和内容要点，生成一篇结构完整、内容丰富的博客文章。"
-                },
-                {
-                    "role": "user",
-                    "content": prompt
-                }
-            ],
-            "temperature": 0.7,
-            "max_tokens": 2000
-        }
-        
+        messages = [
+            {
+                "role": "system",
+                "content": "你是一位专业的博客作者，擅长撰写技术博客文章。请根据用户提供的主题和内容要点，生成一篇结构完整、内容丰富的博客文章。"
+            },
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
         try:
-            response = requests.post(self.api_url, headers=self.headers, json=payload, timeout=30)
-            response.raise_for_status()
-            
-            result = response.json()
-            blog_content = result['choices'][0]['message']['content']
-            
+            response = self.client.chat.completions.create(
+                model="deepseek-chat",
+                messages=messages,
+                temperature=0.7,
+                max_tokens=1024,
+                stream=False
+            )
+            blog_content = response.choices[0].message.content
             return self._format_blog_post(blog_content, theme)
-            
-        except requests.exceptions.RequestException as e:
-            raise Exception(f"API请求失败: {e}")
-        except (KeyError, IndexError) as e:
-            raise Exception(f"API响应解析失败: {e}")
-    
+        except Exception as e:
+            print(f"API请求失败: {e}")
+            raise
+
     def _build_prompt(self, theme: str, content: str, style: str) -> str:
         """构建提示词"""
         return f"""请根据以下信息生成一篇{style}风格的博客文章：
